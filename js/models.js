@@ -230,7 +230,7 @@ class User {
 
   /**Deletes a given story and updates the API (But only if the user made it) */
   async removeOwnStory(storyId) {
-    console.debug("removeStory")
+    console.debug("removeOwnStory")
     await axios({
       url: `https://hack-or-snooze-v3.herokuapp.com/stories/${storyId}`,
       method: "DELETE",
