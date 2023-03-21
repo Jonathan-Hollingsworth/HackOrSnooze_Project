@@ -104,13 +104,11 @@ $allStoriesList.on("click", ".delete", async function(){
     if(id === ownStory.storyId){
       ownership = true
       await currentUser.removeOwnStory(id)
-      $(this).parent.remove
+      $(this).parent().remove()
     }
   }
   if(!ownership){
-    alert("YOU DO NOT HAVE OWNERSHIP OF THIS STORY")
+    return alert("YOU DO NOT HAVE OWNERSHIP OF THIS STORY")
   }
-  if(ownership){
-    alert("YOUR STORY SHOULD NOW BE DELETED")
-  }
+  return alert("YOUR STORY SHOULD NOW BE DELETED")
 })
