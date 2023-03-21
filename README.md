@@ -8,4 +8,5 @@ as well as mark stories from others as favorites
 The code utilized in (un)favoriting and deleting stories is found in the User class within models.js  
 (main.js is only for defining constants and initialization)  
 ##
-Upon favoriting adding or deleting a story you must reload the page in order for the changes to take full effect
+Upon favoriting adding or deleting a story you must reload the page in order for the changes to take full effect  
+You can also see when certain functions are taking effect by opening the console (ctrl + shift + j)
