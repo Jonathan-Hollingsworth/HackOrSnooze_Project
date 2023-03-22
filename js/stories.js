@@ -30,6 +30,13 @@ function generateStoryMarkup(story) {
     }
   }
 
+  let ownership = "hidden"
+  for(let ownStory of currentUser.ownStories){
+    if (story.storyId === ownStory.storyId){
+      ownership = ""
+    }
+  }
+
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
@@ -39,10 +46,10 @@ function generateStoryMarkup(story) {
         </a>
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
-        <button class="delete">
+        <button class="delete ${ownership}">
           <small>DELETE STORY</small>
           <i class="fas fa-trash-alt"></i>
-        </button> <small>(Ownership Required)</small>
+        </button>
         <small class="story-user">posted by ${story.username}</small>
       </li>
     `);
@@ -99,16 +106,7 @@ $allStoriesList.on("click", ".fas", async function(){
 
 $allStoriesList.on("click", ".delete", async function(){
   const id = $(this).parent().attr("id")
-  let ownership = false
-  for(let ownStory of currentUser.ownStories) {
-    if(id === ownStory.storyId){
-      ownership = true
-      await currentUser.removeOwnStory(id)
-      $(this).parent().remove()
-    }
-  }
-  if(!ownership){
-    return alert("YOU DO NOT HAVE OWNERSHIP OF THIS STORY")
-  }
-  return alert("YOUR STORY SHOULD NOW BE DELETED")
+  await currentUser.removeOwnStory(id)
+  $(this).parent().remove()
+  alert("YOUR STORY SHOULD NOW BE DELETED")
 })
